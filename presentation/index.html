@@ -28,7 +28,7 @@
                 <section>
                     <ul>
                         <li>(hopefully) Challenge "the cylinder" present in architecture diagrams</li>
-                        <li>Brief overview of different data storage methods</li>
+                        <li>Brief overview of different Data-System options</li>
                         <li>Evolution of Data-Systems (in a sample application)</li>
                     </ul>
                 </section>
@@ -36,6 +36,12 @@
                     <ul>
                         <li>Practical approach to beginning the Data-Systems conversation</li>
                         <li>Small tid-bits throughout, from theory to practice</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>For the audience: </h3>
+                    <ul>
+                        <li>Visualize the data that is flowing through your systems</li>
                     </ul>
                 </section>
             </section>
@@ -78,7 +84,7 @@
                                 <li>Developers will not try to build their own...</li>
                             </ul>
                         </li>
-                        <li>Boundaries are blurry</li>
+                        <li>Responsibilities are blurry</li>
                         <li>Place pressure on <b>application code</b>
                             <ul>
                                 <li>A scary concept for developers...</li>
@@ -171,9 +177,7 @@
                 </section>
 
                 <section>
-                    <h1>My ask...</h1>
-                </section>
-                <section>
+                    <h1>An Ask:</h1>
                     <p>Consider alternative approaches at the bottom of architecture diagrams.</p>
                     <p>Don't put the relational constraint on too early.</p>
                 </section>
@@ -185,6 +189,144 @@
 
                 <section>
                     <!-- NEEDS MORE GENERAL CONSIDERATIONS FOR RELATIONAL DATABASE ALTERNATIVES -->
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h1>Data-System Options</h1>
+                </section>
+                <section>
+                    <h2>The cast of characters</h2>
+                    <ul>
+                        <li>Relational Database</li>
+                        <li>Cache</li>
+                        <li>Document Database</li>
+                        <li>Event Queue</li>
+                        <li>Graph Database (heavily cut)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Relational Database</h3>
+                    <ul>
+                        <li>Many-to-many relationships</li>
+                        <li>Normalization</li>
+                        <li>Declarative vs. Imperative</li>
+                        <li>Schema-on-write</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Bill of "Landing"</h3>
+                </section>
+                <section>
+                    <h3>"How" vs "What"</h3>
+                </section>
+                <section>
+                    <h3>Cache</h3>
+                    <ul>
+                        <li>Redis, Memcached, "Custom", etc.</li>
+                        <li>In-memory</li>
+                        <li>Flexible</li>
+                        <li>Cache invalidation</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Document Database</h3>
+                    <ul>
+                        <li>Concepts predates RDBMS</li>
+                        <li>Data locality</li>
+                        <li>Fast writes</li>
+                        <li>Schema-on-read</li>
+                        <li>Replication, Partitioning</li>
+                    </ul>
+                </section>
+                <section>
+                    <img src="https://lokigiloa4ec.blob.core.windows.net/easy-tickets/mongo-sharding-replication.png" />
+                </section>
+                <section>
+                    <img src="https://lokigiloa4ec.blob.core.windows.net/easy-tickets/sql-server-failover.png" />
+                </section>
+                <section>
+                    <h3>Event (Messaging) Database</h3>
+                    <ul>
+                        <li>Historical querying</li>
+                        <li>Complicated workflows</li>
+                        <li>Auditing</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li>Server is a broker</li>
+                        <li>Clients are producers, consumers</li>
+                        <li>Producers write messages to the broker</li>
+                        <li>Consumers receive messages by reading them from the broker</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Graph Database</h3>
+                    <ul>
+                        <li>Nodes and edges</li>
+                        <li>Support baked in to popular RDBMS</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <h1>Data-System Evolution</h1>
+            </section>
+            <section>
+                <section>
+                    <h2>Act 1: Relational Beginnings</h2>
+                </section>
+                <section>
+                    <ul>
+                        <li>Easy Tickets</li>
+                        <li>Shows, Acts, Locations</li>
+                        <li>Postgres</li>
+                    </ul>
+                </section>
+                <section>
+                    <!-- DATABASE DIAGRAM -->
+                </section>
+                <section>
+                    <!-- LOCATIONS PROGRAMMING MODEL -->
+                </section>
+                <section>
+                    <!-- SHOWDETAILS PROGRAMMING MODEL -->
+                </section>
+                <section>
+                    <h2>Impedance Mismatch</h2>
+                </section>
+                <section>
+                    <!-- SHOWDETAILS WITH CACHE PROGRAMMING MODEL -->
+                </section>
+                <section>
+                    <!-- CACHE BENEFITS -->
+                </section>
+                <section>
+                    <h2>Evolution tipping point</h2>
+                </section>
+                <section>
+                    <h2>Change the name of a band</h2>
+                    <ul>
+                        <li>Act reflects current information</li>
+                        <li>Name change pollutes historical information</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li>"ActHistory" Entity</li>
+                        <li>Generalized "ActChanges" Entity</li>
+                        <li>Entity Attribute Value (EAV) Implementation</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Act 2: Document Arrival</h2>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h2>Act 3: Future with Events</h2>
                 </section>
             </section>
         </div>
