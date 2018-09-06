@@ -26,7 +26,7 @@ namespace easy_tickets.Controllers
         }
 
         // GET: api/ShowDetails
-        [HttpGet]
+        //[HttpGet]
         public IEnumerable<ShowDetails> Get()
         {
             List<ShowDetails> showDetails = new List<ShowDetails>();

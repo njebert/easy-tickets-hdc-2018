@@ -57,9 +57,8 @@ namespace easy_tickets
 
                         _.Events.StreamIdentity = Marten.Events.StreamIdentity.AsString;
                         _.Events.DatabaseSchemaName = "events";
-                        _.Events.AddEventType(typeof(ActStarted));
+
                         _.Events.AddEventType(typeof(ActVisited));
-                        _.Events.AddEventType(typeof(ActDissolved));
                     }
                 ));
 

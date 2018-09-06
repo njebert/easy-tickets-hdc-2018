@@ -9,7 +9,6 @@ namespace easy_tickets.DataModels
     {
         public Ticket() { }
         public Guid Id { get; set; }
-
         public string Section { get; set; }
         public decimal Price { get; set; }
         public DateTime PurchaseDate { get; set; }
