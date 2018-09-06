@@ -4,6 +4,7 @@
 # Presentation Images
 presentation/img
 presentation/*.pptx
+schema/
 
 # User-specific files
 *.suo

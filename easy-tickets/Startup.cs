@@ -15,6 +15,8 @@ using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 using System.Data.SqlClient;
 using Npgsql;
+using Marten;
+using easy_tickets.DataModels;
 
 namespace easy_tickets
 {
@@ -43,9 +45,17 @@ namespace easy_tickets
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
-                    //Configuration.GetConnectionString("DefaultConnection")
                     builder.ConnectionString
                     ));
+
+            services.AddSingleton<IDocumentStore>(
+                    DocumentStore.For(_ =>
+                    {
+                        _.Connection(builder.ConnectionString);
+                        _.Schema.For<Ticket>().AddSubClass<GATicket>().AddSubClass<VIPTicket>();
+                    }
+                ));
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

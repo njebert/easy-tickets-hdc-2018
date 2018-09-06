@@ -8,7 +8,6 @@ using easy_tickets.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using StackExchange.Profiling;
 using StackExchange.Redis;
 
 namespace easy_tickets.Controllers
