@@ -52,7 +52,14 @@ namespace easy_tickets
                     DocumentStore.For(_ =>
                     {
                         _.Connection(builder.ConnectionString);
+
                         _.Schema.For<Ticket>().AddSubClass<GATicket>().AddSubClass<VIPTicket>();
+
+                        _.Events.StreamIdentity = Marten.Events.StreamIdentity.AsString;
+                        _.Events.DatabaseSchemaName = "events";
+                        _.Events.AddEventType(typeof(ActStarted));
+                        _.Events.AddEventType(typeof(ActVisited));
+                        _.Events.AddEventType(typeof(ActDissolved));
                     }
                 ));
 
