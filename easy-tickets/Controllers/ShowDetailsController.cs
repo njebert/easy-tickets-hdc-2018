@@ -27,53 +27,53 @@ namespace easy_tickets.Controllers
 
         // GET: api/ShowDetails
         //[HttpGet]
-        public IEnumerable<ShowDetails> Get()
-        {
-            List<ShowDetails> showDetails = new List<ShowDetails>();
-
-            var shows = _context.Shows;
-
-            foreach (var show in shows)
-            {
-                var acts = _context.ShowActs.Where(sa => sa.ShowID == show.ShowID).Select(sa => sa.Act).ToList();
-
-                ShowDetails sd = new ShowDetails(show, acts);
-                showDetails.Add(sd);
-            }
-
-            return showDetails;
-        }
-
-        //// GET: api/ShowDetails
-        //// Redis Cache Example
-        //[HttpGet]
         //public IEnumerable<ShowDetails> Get()
         //{
         //    List<ShowDetails> showDetails = new List<ShowDetails>();
 
-        //    var db = _connectionMultiplexer.GetDatabase();
-        //    string cachedShowDetails = db.StringGet("showDetails");
+        //    var shows = _context.Shows;
 
-        //    if (string.IsNullOrEmpty(cachedShowDetails))
+        //    foreach (var show in shows)
         //    {
-        //        var shows = _context.Shows;
+        //        var acts = _context.ShowActs.Where(sa => sa.ShowID == show.ShowID).Select(sa => sa.Act).ToList();
 
-        //        foreach (var show in shows)
-        //        {
-        //            var acts = _context.ShowActs.Where(sa => sa.ShowID == show.ShowID).Select(sa => sa.Act).ToList();
-
-        //            ShowDetails sd = new ShowDetails(show, acts);
-        //            showDetails.Add(sd);
-        //        }
-
-        //        db.StringSet("showDetails", JsonConvert.SerializeObject(showDetails).ToString(), new TimeSpan(0, 0, 0, 10));
-        //    }
-        //    else
-        //    {
-        //        showDetails = JsonConvert.DeserializeObject<List<ShowDetails>>(cachedShowDetails);
+        //        ShowDetails sd = new ShowDetails(show, acts);
+        //        showDetails.Add(sd);
         //    }
 
         //    return showDetails;
         //}
+
+        //// GET: api/ShowDetails
+        //// Redis Cache Example
+        [HttpGet]
+        public IEnumerable<ShowDetails> Get()
+        {
+            List<ShowDetails> showDetails = new List<ShowDetails>();
+
+            var db = _connectionMultiplexer.GetDatabase();
+            string cachedShowDetails = db.StringGet("showDetails");
+
+            if (string.IsNullOrEmpty(cachedShowDetails))
+            {
+                var shows = _context.Shows;
+
+                foreach (var show in shows)
+                {
+                    var acts = _context.ShowActs.Where(sa => sa.ShowID == show.ShowID).Select(sa => sa.Act).ToList();
+
+                    ShowDetails sd = new ShowDetails(show, acts);
+                    showDetails.Add(sd);
+                }
+
+                db.StringSet("showDetails", JsonConvert.SerializeObject(showDetails).ToString(), new TimeSpan(0, 0, 0, 10));
+            }
+            else
+            {
+                showDetails = JsonConvert.DeserializeObject<List<ShowDetails>>(cachedShowDetails);
+            }
+
+            return showDetails;
+        }
     }
 }
